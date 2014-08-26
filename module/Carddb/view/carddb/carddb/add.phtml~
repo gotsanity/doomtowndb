@@ -1,0 +1,50 @@
+<?php
+// module/Carddb/view/carddb/carddb/add.phtml:
+
+$title = 'Add a new Card';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('carddb', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+/*echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('name'));
+echo '<br />';
+echo $this->formRow($form->get('value'));
+echo '<br />';
+echo $this->formRow($form->get('suit'));
+echo '<br />';
+echo $this->formRow($form->get('bullets'));
+echo '<br />';
+echo $this->formRow($form->get('type'));
+echo '<br />';
+echo $this->formRow($form->get('influence'));
+echo '<br />';
+echo $this->formRow($form->get('control'));
+echo '<br />';
+echo $this->formRow($form->get('faction'));
+echo '<br />';
+echo $this->formRow($form->get('text'));
+echo '<br />';
+echo $this->formRow($form->get('flavor_text'));
+echo '<br />';
+echo $this->formRow($form->get('cost'));
+echo '<br />';
+echo $this->formRow($form->get('upkeep'));
+echo '<br />';
+echo $this->formRow($form->get('production'));
+echo '<br />';
+echo $this->formRow($form->get('starting_pool'));
+echo '<br />';
+echo $this->formRow($form->get('card_image'));
+echo '<br />';
+echo $this->formSubmit($form->get('submit'));
+echo '<br />'; */
+
+echo $this->formCollection($form);
+
+echo $this->form()->closeTag();

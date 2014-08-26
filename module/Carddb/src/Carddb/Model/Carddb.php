@@ -1,0 +1,406 @@
+<?php
+namespace Carddb\Model;
+
+use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
+
+class Carddb
+{
+    public $id;
+    public $set_name;
+    public $card_number;
+    public $name;
+    public $rank;
+    public $suit;
+    public $type;
+    public $cost;
+    public $upkeep;
+    public $production;
+    public $bullets;
+    public $bullet_bonus;
+    public $draw_type;
+    public $influence;
+    public $control;
+    public $outfit;
+    public $keywords;
+    public $text;
+    public $flavor_text;
+    public $card_image;
+    protected $inputFilter;
+
+    public function exchangeArray($data)
+    {
+        $this->id     = (isset($data['id'])) ? $data['id'] : null;
+        $this->set_name = (isset($data['set_name'])) ? $data['set_name'] : null;
+        $this->card_number = (isset($data['card_number'])) ? $data['card_number'] : null;
+        $this->name = (isset($data['name'])) ? $data['name'] : null;
+        $this->rank  = (isset($data['rank'])) ? $data['rank'] : null;
+        $this->suit     = (isset($data['suit'])) ? $data['suit'] : null;
+        $this->type     = (isset($data['type'])) ? $data['type'] : null;
+        $this->cost     = (isset($data['cost'])) ? $data['cost'] : null;
+        $this->upkeep     = (isset($data['upkeep'])) ? $data['upkeep'] : null;
+        $this->production     = (isset($data['production'])) ? $data['production'] : null;
+        $this->bullets     = (isset($data['bullets'])) ? $data['bullets'] : null;
+        $this->bullet_bonus     = (isset($data['bullet_bonus'])) ? $data['bullet_bonus'] : null;
+        $this->draw_type     = (isset($data['draw_type'])) ? $data['draw_type'] : null;
+        $this->influence     = (isset($data['influence'])) ? $data['influence'] : null;
+        $this->control     = (isset($data['control'])) ? $data['control'] : null;
+        $this->outfit     = (isset($data['outfit'])) ? $data['outfit'] : null;
+        $this->keywords     = (isset($data['keywords'])) ? $data['keywords'] : null;
+        $this->text     = (isset($data['text'])) ? $data['text'] : null;
+        $this->flavor_text     = (isset($data['flavor_text'])) ? $data['flavor_text'] : null;
+        $this->card_image     = (isset($data['card_image'])) ? $data['card_image'] : null;
+    }
+    
+		public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+    
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
+        throw new \Exception("Not used");
+    }
+
+    public function getInputFilter()
+    {
+        if (!$this->inputFilter) {
+            $inputFilter = new InputFilter();
+            $factory     = new InputFactory();
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'id',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'set_name',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'card_number',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'name',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'rank',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 2,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'suit',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'type',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'cost',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                    array('name' => 'Null'),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'upkeep',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                    array('name' => 'Null'),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'production',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                    array('name' => 'Null'),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'bullets',
+                'required' => false,
+                'filters'  => array(
+                		array('name' => 'StripTags'),
+                		array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 10,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'bullet_bonus',
+                'required' => false,
+                'filters'  => array(
+                		array('name' => 'StripTags'),
+                		array('name' => 'StringTrim'),
+                		array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 10,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'draw_type',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'influence',
+                'required' => false,
+                'filters'  => array(
+                		array('name' => 'StripTags'),
+                		array('name' => 'StringTrim'),
+                		array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 10,
+                        ),
+                    ),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'control',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'Int'),
+                    array('name' => 'Null'),
+                ),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'outfit',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'keywords',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 300,
+                        ),
+                    ),
+                ),
+            )));
+                        
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'text',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 1000,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'flavor_text',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 1000,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'card_image',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                    array('name' => 'Null'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+
+            $this->inputFilter = $inputFilter;
+        }
+
+        return $this->inputFilter;
+    }
+}

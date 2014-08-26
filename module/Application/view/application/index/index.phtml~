@@ -1,0 +1,44 @@
+<div class="jumbotron">
+    <h1><?php echo sprintf($this->translate('Welcome to %sDT:R Database%s'), '<span class="zf-green">', '</span>') ?></h1>
+    <p><?php echo sprintf($this->translate('Welcome to the Doomtown: Reloaded Database. This site is meant to be a one-stop resource for all of your deckbuilding needs.'), '<a href="http://dtrdb.local/carddb/" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
+    <p><a class="btn btn-success btn-lg" href="http://dtrdb.local/carddb/"><?php echo $this->translate('Search the Database') ?> &raquo;</a></p>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Follow Development') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php echo sprintf($this->translate('The Doomtown: Reloaded Database is under active development. If you wish to contribute to this open source project than please visit the %sgithub repo%s linked below. If you encounter any bugs please take a moment to add them to the %sissue tracker%s. You can also read more about the project (and other gaming news) on %sour blog site%s.'), '<a href="http://github.com/gotsanity/doomtowndb/" target="_blank">', '</a>', '<a href="http://github.com/gotsanity/doomtowndb/issues" target="_blank">', '</a>', '<a href="http://www.projectmulligan.com" target="_blank">', '</a>') ?></p>
+                <p><a class="btn btn-success pull-right" href="https://github.com/gotsanity/doomtowndb" target="_blank"><?php echo $this->translate('DT:R DB Dev Portal') ?> &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Explore the DB') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php echo sprintf($this->translate('The database currently houses a %scard database%s that allows you to browse the cards within the DT:R world. In the future we will be adding search, sorting, deckbuilding, comments, and rating systems. We will, in time, also be adding an active API for others to access and involve in their own projects.'), '<a href="http://dtrdb.local/carddb">', '</a>') ?></p>
+                <p><a class="btn btn-success pull-right" href="http://dtrdb.local/carddb/"><?php echo $this->translate('Explore the Card DB') ?> &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Special Thanks') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php echo sprintf($this->translate('Special thanks needs to go out to some of the others on the web for helping to make this site possible. First off, we should all take a moment to thank %sAEG%s for producing this wonderful game and also to the people at %sProject Mulligan%s, %sTeam Covenant%s, %sReddit%s, and %sBoardGameGeek%s for creating a wonderful community for us all to enjoy.'), '<a href="http://www.alderac.com/doomtown" target="_blank">', '</a>', '<a href="http://www.projectmulligan.com" target="_blank">', '</a>', '<a href="http://www.teamcovenant.com" target="_blank">', '</a>', '<a href="http://www.reddit.com/r/doomtown" target="_blank">', '</a>', '<a href="http://www.boardgamegeek.com/boardgame/156714/doomtown-reloaded" target="_blank">', '</a>') ?></p>
+                <p><a class="btn btn-success pull-right" href="http://webchat.freenode.net?channels=zftalk" target="_blank"><?php echo $this->translate('Ping us on IRC') ?> &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -35,3 +35,28 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+
+/* Begin Card Styles */
+
+.card-block-basic {
+	clear: both;
+	padding: 10px;
+}
+
+.cardimage {
+	width: 230px;
+	height: 300px;
+	float: left;
+	margin-right: 10px;
+}
+
+span.title {
+	font-weight: bold;
+	margin-right: 2px;
+}
+
+.pagination-centered {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
