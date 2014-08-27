@@ -1,0 +1,39 @@
+<?php
+// module/Carddb/view/carddb/carddb/index.phtml:
+
+$title = 'Doomtown: Reloaded Card Database';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php $carddb = $this->paginator; ?>
+
+<div class="card-block-basic">
+    <div class="card-image"><img class="cardimage" src="<?php echo $this->serverUrl(); ?>/<?php echo $this->escapeHtml($carddb->card_image);?>" /></div>
+    <div class="name"><span class="title">Name:</span><?php echo $this->escapeHtml($carddb->name);?></div>
+    <?php if (!is_null($this->escapeHtml($carddb->set_name))): ?><div class="set_info"><span class="title">Set:</span><?php echo $this->escapeHtml($carddb->set_name);?> <span class="title">Card Number:</span><?php echo $this->escapeHtml($carddb->card_number);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->rank))): ?><div class="rank"><span class="title">Rank:</span><?php echo $this->escapeHtml($carddb->rank);?> of <?php echo $this->escapeHtml($carddb->suit);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->type))): ?><div class="type"><span class="title">Card Type:</span><?php echo $this->escapeHtml($carddb->type);?></div><?php endif; ?>
+    <?php if ($this->escapeHtml($carddb->type) == "Outfit"): ?><div class="starting_pool"><span class="title">Starting Ghost Rock Pool:</span><?php echo $this->escapeHtml($carddb->cost);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->cost) && $this->escapeHtml($carddb->type) != "Outfit")): ?><div class="cost"><span class="title">Cost:</span><?php echo $this->escapeHtml($carddb->cost);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->upkeep))): ?><div class="upkeep"><span class="title">Upkeep:</span><?php echo $this->escapeHtml($carddb->upkeep);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->production))): ?><div class="production"><span class="title">Ghost Rock Production:</span><?php echo $this->escapeHtml($carddb->production);?></div><?php endif; ?>
+    <?php if ($this->escapeHtml($carddb->bullets) != null): ?><div class="bullets"><span class="title">Bullets:</span><?php echo $this->escapeHtml($carddb->bullets);?> <?php echo $this->escapeHtml($carddb->draw_type);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->bullet_bonus))): ?><div class="bullet_bonus"><span class="title">Bonus Bullets:</span><?php echo $this->escapeHtml($carddb->bullet_bonus);?> <?php echo $this->escapeHtml($carddb->draw_type);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->influence))): ?><div class="influence"><span class="title">Influence:</span><?php echo $this->escapeHtml($carddb->influence);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->control))): ?><div class="control"><span class="title">Control:</span><?php echo $this->escapeHtml($carddb->control);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->outfit))): ?><div class="outfit"><span class="title">Outfit:</span><?php echo $this->escapeHtml($carddb->outfit);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->keywords))): ?><div class="keywords"><span class="title">Keywords:</span><?php echo $this->escapeHtml($carddb->keywords);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->text))): ?><div class="card_text"><span class="title">Card Text:</span><?php echo $this->escapeHtml($carddb->text);?></div><?php endif; ?>
+    <?php if (!is_null($this->escapeHtml($carddb->flavor_text))): ?><div class="flavor_text"><span class="title">Flavor Text:</span><?php echo $this->escapeHtml($carddb->flavor_text);?></div><?php endif; ?>
+		<?php if($this->zfcUserIdentity()): ?>
+    <div class="admin-controls">
+        <a href="<?php echo $this->url('carddb',
+            array('action'=>'edit', 'id' => $carddb->id));?>">Edit</a>
+        <a href="<?php echo $this->url('carddb',
+            array('action'=>'delete', 'id' => $carddb->id));?>">Delete</a>
+    </div>
+    <?php endif; ?>
+</div>
+
+<div class="clearfix"></div>

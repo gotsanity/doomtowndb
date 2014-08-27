@@ -56,7 +56,56 @@ span.title {
 }
 
 .pagination-centered {
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
+    width: 80%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.pagination {
+
+}
+
+div.login {
+	float: right;
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: -15px;
+}
+
+div.login h1 {
+	display: none;
+}
+
+div.login p {
+	color: #fff;
+}
+
+div.login dt {
+	display: none;
+}
+
+div.login dd {
+	display: inline;
+}
+
+table.card-table {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.card-table td {
+	min-width: 200px;
+}
+
+table.card-table tr:nth-child(even) {
+	background: #eee;
+}
+
+table.card-table th {
+	border-bottom: 1px solid #aaa;
+}
+
+th a {
+	color: #aaa;
 }

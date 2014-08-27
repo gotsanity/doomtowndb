@@ -5,6 +5,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Carddb\Model\Carddb;
 use Carddb\Form\CarddbForm;
+use Zend\Db\Sql\Select;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 
 class CarddbController extends AbstractActionController
 {
@@ -22,16 +25,56 @@ class CarddbController extends AbstractActionController
     
     public function indexAction()
     {
+      $select = new Select();
+      $order_by = $this->params()->fromRoute('order_by') ?
+              $this->params()->fromRoute('order_by') : 'id';
+
+      $order = $this->params()->fromRoute('order') ?
+              $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
+			$select->order($order_by . ' ' . $order);
+			
+        $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
+
+        $carddbs = $this->getCarddbTable()->fetchAll($select->order($order_by . ' ' . $order));
+        $itemsPerPage = 2;
+
+        $carddbs->current();
+        $paginator = new Paginator(new paginatorIterator($carddbs));
+        $paginator->setCurrentPageNumber($page)
+                ->setItemCountPerPage($itemsPerPage)
+                ->setPageRange(7);
+
+        return new ViewModel(array(
+                    'order_by' => $order_by,
+                    'order' => $order,
+                    'page' => $page,
+                    'paginator' => $paginator,
+                ));
+                
+                /*
 		  // grab the paginator from the CarddbTable
-		  $paginator = $this->getCarddbTable()->fetchAll(true);
+		  $paginator = $this->getCarddbTable()->fetchAll(true, $order_by, $order);
 		  // set the current page to what has been passed in query string, or to 1 if none set
 		  $paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
 		  // set the number of items per page to 10
-		  $paginator->setItemCountPerPage(1);
+		  $paginator->setItemCountPerPage(15);
 
 		  return new ViewModel(array(
-		      'paginator' => $paginator
-		  ));
+		      'paginator' => $paginator,
+		      'order_by' => $order_by,
+		      'order' => $order,
+		  )); */
+    }
+    
+    public function singleAction()
+    {
+    	// single display here
+    	$id = $this->params()->fromRoute('id');
+    	$paginator = $this->getCarddbTable()->getCarddb($id);
+    	return new ViewModel(array(
+				'paginator' => $paginator,
+				'id' => $id,
+    	));
     }
 
     public function addAction()

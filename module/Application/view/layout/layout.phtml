@@ -45,6 +45,15 @@
 											->setUlClass('nav navbar-nav')
 											->render();
 									?>
+									
+<!--  commented out to disable user form until completed
+									<div class="login">
+										<?php if(!$this->zfcUserIdentity()): ?>
+												<?php echo $this->zfcUserLoginWidget(array('redirect'=>'application')); ?>
+										<?php else: ?>
+												<p>Welcome <?php echo $this->zfcUserIdentity()->getEmail(); ?>! <a href="<?php echo $this->basePath(); ?>/user/logout">Logout</a> - <a href="<?php echo $this->basePath(); ?>/user/change-password">Change Password</a></p>
+										<?php endif?>
+									</div> -->
                 </div><!--/.nav-collapse -->
             </div>
         </nav>

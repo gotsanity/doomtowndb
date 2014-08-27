@@ -16,11 +16,12 @@ class CarddbTable
         $this->tableGateway = $tableGateway;
     }
 
-    public function fetchAll($paginated=false)
+    public function fetchAll($paginated=false, $order_by=false, $order=false)
     {
         if($paginated) {
             // create a new Select object for the table carddb
             $select = new Select('carddb');
+            $select->order($order_by.' '.$order);
             // create a new result set based on the Carddb entity
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Carddb());

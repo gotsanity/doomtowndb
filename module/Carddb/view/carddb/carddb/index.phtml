@@ -3,12 +3,16 @@
 
 $title = 'Doomtown: Reloaded Card Database';
 $this->headTitle($title);
+
+// table ordering
+$url_order = 'ASC';  // the following lines
+if (!empty($order_by))
+    $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-<p>
+<?php if($this->zfcUserIdentity()): ?><p>
     <a href="<?php echo $this->url('carddb', array('action'=>'add'));?>">Add a new Card</a>
-</p>
-
+</p><?php endif; ?>
 <div class="align-center">
 <?php // add at the end of the file after the table
 echo $this->paginationControl(
@@ -20,40 +24,32 @@ echo $this->paginationControl(
     array('partial/paginator.phtml', 'Carddb'),
     // the route to link to when a user clicks a control link
     array(
+    		'order_by' => $order_by,
+    		'order' => $order,
         'route' => 'carddb'
     )
 );
 ?>
 </div>
 
+<table class="card-table">
+<tr>
+	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'name', 'order' => $url_order)); ?>">Card Name <?php if ($order_by == 'name'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></span></th>
+	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'type', 'order' => $url_order)); ?>">Card Type <?php if ($order_by == 'type'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
+	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'outfit', 'order' => $url_order)); ?>">Outfit <?php if ($order_by == 'type'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
+	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'rank', 'order' => $url_order)); ?>">Rank <?php if ($order_by == 'rank'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a><a href="<?php echo $this->url('carddb', array('order_by' => 'suit', 'order' => $url_order)); ?>">Suit <?php if ($order_by == 'suit'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
+	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'card_number', 'order' => $url_order)); ?>">Card Number <?php if ($order_by == 'card_number'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
+<tr>
 <?php foreach ($this->paginator as $carddb) : ?>
-<div class="card-block-basic">
-    <div class="card-image"><img class="cardimage" src="<?php echo $this->serverUrl(); ?>/<?php echo $this->escapeHtml($carddb->card_image);?>" /></div>
-    <div class="name"><span class="title">Name:</span><?php echo $this->escapeHtml($carddb->name);?></div>
-    <?php if (!empty($this->escapeHtml($carddb->set_name))): ?><div class="set_info"><span class="title">Set:</span><?php echo $this->escapeHtml($carddb->set_name);?> <span class="title">Card Number:</span><?php echo $this->escapeHtml($carddb->card_number);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->rank))): ?><div class="rank"><span class="title">Rank:</span><?php echo $this->escapeHtml($carddb->rank);?> of <?php echo $this->escapeHtml($carddb->suit);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->type))): ?><div class="type"><span class="title">Card Type:</span><?php echo $this->escapeHtml($carddb->type);?></div><?php endif; ?>
-    <?php if ($this->escapeHtml($carddb->type) == "Outfit"): ?><div class="starting_pool"><span class="title">Starting Ghost Rock Pool:</span><?php echo $this->escapeHtml($carddb->cost);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->cost) && $this->escapeHtml($carddb->type) != "Outfit")): ?><div class="cost"><span class="title">Cost:</span><?php echo $this->escapeHtml($carddb->cost);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->upkeep))): ?><div class="upkeep"><span class="title">Upkeep:</span><?php echo $this->escapeHtml($carddb->upkeep);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->production))): ?><div class="production"><span class="title">Ghost Rock Production:</span><?php echo $this->escapeHtml($carddb->production);?></div><?php endif; ?>
-    <?php if ($this->escapeHtml($carddb->bullets) != null): ?><div class="bullets"><span class="title">Bullets:</span><?php echo $this->escapeHtml($carddb->bullets);?> <?php echo $this->escapeHtml($carddb->draw_type);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->bullet_bonus))): ?><div class="bullet_bonus"><span class="title">Bonus Bullets:</span><?php echo $this->escapeHtml($carddb->bullet_bonus);?> <?php echo $this->escapeHtml($carddb->draw_type);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->influence))): ?><div class="influence"><span class="title">Influence:</span><?php echo $this->escapeHtml($carddb->influence);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->control))): ?><div class="control"><span class="title">Control:</span><?php echo $this->escapeHtml($carddb->control);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->outfit))): ?><div class="outfit"><span class="title">Outfit:</span><?php echo $this->escapeHtml($carddb->outfit);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->keywords))): ?><div class="keywords"><span class="title">Keywords:</span><?php echo $this->escapeHtml($carddb->keywords);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->text))): ?><div class="card_text"><span class="title">Card Text:</span><?php echo $this->escapeHtml($carddb->text);?></div><?php endif; ?>
-    <?php if (!empty($this->escapeHtml($carddb->flavor_text))): ?><div class="flavor_text"><span class="title">Flavor Text:</span><?php echo $this->escapeHtml($carddb->flavor_text);?></div><?php endif; ?>
-    <div class="admin-controls">
-        <a href="<?php echo $this->url('carddb',
-            array('action'=>'edit', 'id' => $carddb->id));?>">Edit</a>
-        <a href="<?php echo $this->url('carddb',
-            array('action'=>'delete', 'id' => $carddb->id));?>">Delete</a>
-    </div>
-</div>
+	<tr>
+		<td><a href="<?php echo $this->url('carddb', array('action'=>'single', 'id'=>$this->escapeHtml($carddb->id)));?>"><?php echo $this->escapeHtml($carddb->name);?></a></td>
+		<td><?php echo $this->escapeHtml($carddb->type);?></td>
+		<td><?php echo $this->escapeHtml($carddb->outfit);?></td>
+		<td><?php if (!is_null($this->escapeHtml($carddb->suit))): ?><?php echo $this->escapeHtml($carddb->rank);?> of <?php echo $this->escapeHtml($carddb->suit);?><?php endif; ?></td>
+		<td><?php echo $this->escapeHtml($carddb->set_name);?> #<?php echo $this->escapeHtml($carddb->card_number);?></td>
+	</tr>
 <?php endforeach; ?>
-
+</table>
 <div class="clearfix"></div>
 <div class="align-center">
 <?php // add at the end of the file after the table
@@ -66,7 +62,9 @@ echo $this->paginationControl(
     array('partial/paginator.phtml', 'Carddb'),
     // the route to link to when a user clicks a control link
     array(
-        'route' => 'carddb'
+        'route' => 'carddb',
+    		'order_by' => $order_by,
+    		'order' => $order,
     )
 );
 ?>

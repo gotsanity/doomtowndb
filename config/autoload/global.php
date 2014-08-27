@@ -33,6 +33,11 @@ return array(
 						              'route' => 'carddb',
 						              'action' => 'delete',
 						          ),
+						          array(
+						              'label' => 'Single',
+						              'route' => 'carddb',
+						              'action' => 'single',
+						          ),
                  ),
              ),
          ),

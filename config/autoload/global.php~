@@ -23,6 +23,16 @@ return array(
                          'route' => 'carddb',
                          'action' => 'add',
                      ),
+                     array(
+						              'label' => 'Edit',
+						              'route' => 'carddb',
+						              'action' => 'edit',
+						          ),
+						          array(
+						              'label' => 'Delete',
+						              'route' => 'carddb',
+						              'action' => 'delete',
+						          ),
                  ),
              ),
          ),
