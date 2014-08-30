@@ -15,6 +15,7 @@ if (!empty($order_by))
 </p><?php endif; ?>
 <div class="align-center">
 <?php // add at the end of the file after the table
+
 echo $this->paginationControl(
     // the paginator object
     $this->paginator,
@@ -26,9 +27,11 @@ echo $this->paginationControl(
     array(
     		'order_by' => $order_by,
     		'order' => $order,
+    		'query' => $query,
         'route' => 'carddb'
     )
 );
+
 ?>
 </div>
 
@@ -36,7 +39,7 @@ echo $this->paginationControl(
 <tr>
 	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'name', 'order' => $url_order)); ?>">Card Name <?php if ($order_by == 'name'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></span></th>
 	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'type', 'order' => $url_order)); ?>">Card Type <?php if ($order_by == 'type'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
-	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'outfit', 'order' => $url_order)); ?>">Outfit <?php if ($order_by == 'outfit'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
+	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'outfit', 'order' => $url_order)); ?>">Outfit <?php if ($order_by == 'type'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
 	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'rank', 'order' => $url_order)); ?>">Rank <?php if ($order_by == 'rank'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a><a href="<?php echo $this->url('carddb', array('order_by' => 'suit', 'order' => $url_order)); ?>">Suit <?php if ($order_by == 'suit'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
 	<th><a href="<?php echo $this->url('carddb', array('order_by' => 'card_number', 'order' => $url_order)); ?>">Card Number <?php if ($order_by == 'card_number'): ?><span class="glyphicon-chevron-<?php echo $url_order == 'ASC' ? 'down' : 'up' ?>"></span><?php endif; ?></a></th>
 <tr>

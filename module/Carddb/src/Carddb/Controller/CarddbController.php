@@ -62,6 +62,43 @@ class CarddbController extends AbstractActionController
 				'id' => $id,
     	));
     }
+    
+    public function resultsAction()
+    {
+      $select = new Select();
+      $order_by = $this->params()->fromRoute('order_by') ?
+              $this->params()->fromRoute('order_by') : 'id';
+
+      $order = $this->params()->fromRoute('order') ?
+              $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
+			$select->order($order_by . ' ' . $order);
+			
+        $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
+        
+        $field = $this->params()->fromQuery('field') ? $this->params()->fromQuery('field') : array('set_name');
+        $value = $this->params()->fromQuery('value') ? $this->params()->fromQuery('value') : array('Core Set');
+
+			//die(var_dump($field).','.var_dump($value));
+			
+			foreach($field as $k => $v) {
+				$query[$v] = $value[$k];
+			}
+
+		  // grab the paginator from the CarddbTable
+		  $paginator = $this->getCarddbTable()->search($query, true, $order_by, $order);
+		  // set the current page to what has been passed in query string, or to 1 if none set
+		  $paginator->setCurrentPageNumber($page);
+		  // set the number of items per page to 10
+		  $paginator->setItemCountPerPage(15);
+
+		  return new ViewModel(array(
+		      'paginator' => $paginator,
+		      'order_by' => $order_by,
+		      'order' => $order,
+		      'query' => $query,
+		      'page' => $page,
+		  ));
+    }
 
     public function addAction()
     {

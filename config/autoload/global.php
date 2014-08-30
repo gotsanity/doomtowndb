@@ -38,6 +38,11 @@ return array(
 						              'route' => 'carddb',
 						              'action' => 'single',
 						          ),
+						          array(
+						              'label' => 'Search Results',
+						              'route' => 'carddb',
+						              'action' => 'results',
+						          ),
                  ),
              ),
          ),

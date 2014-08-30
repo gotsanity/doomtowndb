@@ -40,6 +40,32 @@ class CarddbTable
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
+    
+    public function search($where, $paginated=false, $order_by=false, $order=false)
+    {
+        if($paginated) {
+            // create a new Select object for the table carddb
+            $select = new Select('carddb');
+            $select->where($where);
+            $select->order($order_by.' '.$order);
+            // create a new result set based on the Carddb entity
+            $resultSetPrototype = new ResultSet();
+            $resultSetPrototype->setArrayObjectPrototype(new Carddb());
+            // create a new pagination adapter object
+            $paginatorAdapter = new DbSelect(
+                // our configured select object
+                $select,
+                // the adapter to run it against
+                $this->tableGateway->getAdapter(),
+                // the result set to hydrate
+                $resultSetPrototype
+            );
+            $paginator = new Paginator($paginatorAdapter);
+            return $paginator;
+        }
+        $resultSet = $this->tableGateway->select();
+        return $resultSet;
+    }
 
     public function getCarddb($id)
     {

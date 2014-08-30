@@ -48,5 +48,13 @@ class Module
             ),
         );
     }
+
+		public function getViewHelperConfig()
+		{
+				return array(
+				    'invokables' => array(
+				        'getQueryString' => 'Carddb\View\Helper\getQueryString'
+				);
+		}
 }
 ?>
