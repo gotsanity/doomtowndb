@@ -5,6 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Carddb\Model\Carddb;
 use Carddb\Form\CarddbForm;
+use Carddb\Form\CarddbSearch;
 use Zend\Db\Sql\Select;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
@@ -96,10 +97,18 @@ class CarddbController extends AbstractActionController
 				'flavor_text',
 				'card_image',
 			);
-
+			
 			foreach ($fields as $k => $v)
 			{
-			
+	      if (!empty($this->params()->fromQuery($v)))
+	      {
+					$searchFields[] = $v;
+	      }
+			}
+
+//die(var_dump($searchFields));
+			foreach ($searchFields as $k => $v)
+			{
 				if (!is_null($this->params()->fromQuery($v)))
 				{
 					if (strpos($this->params()->fromQuery($v), '>') === 0)
@@ -174,6 +183,17 @@ class CarddbController extends AbstractActionController
                 return $this->redirect()->toRoute('carddb');
             }
         }
+        return array('form' => $form);
+    }
+
+    public function searchAction()
+    {
+    		// initialize the form
+        $form = new CarddbSearch();
+        $form->get('submit')->setValue('Search');
+        
+        
+        // return the form
         return array('form' => $form);
     }
 
