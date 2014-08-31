@@ -100,7 +100,7 @@ class CarddbSearch extends Form
             'name' => 'cost',
             'type' => 'Zend\Form\Element\Number',
             'options' => array(
-                'label' => 'cost',
+                'label' => 'Cost',
             ),
             'attributes' => array(
             		'min' => '0',
@@ -219,6 +219,34 @@ class CarddbSearch extends Form
                 		'Morgan Cattle Co.' => 'Morgan Cattle Co.',
                 		'The Fourth Ring' => 'The Fourth Ring',
             		),
+            ),
+        ));
+        $this->add(array(
+            'name' => 'keywords',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Keywords',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'text',
+            'type' => 'Textarea',
+            'options' => array(
+                'label' => 'Card Text',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'flavor_text',
+            'type' => 'Textarea',
+            'options' => array(
+                'label' => 'Flavor Text',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'card_image',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Card Image Url',
             ),
         ));
          // submit button

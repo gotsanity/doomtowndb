@@ -11,5 +11,28 @@ $form->setAttribute('action', $this->url('carddb', array('action' => 'results'))
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
+
+			$fields = array(
+				'set_name',
+				'card_number',
+				'name',
+				'rank',
+				'suit',
+				'type',
+				'cost',
+				'upkeep',
+				'production',
+				'bullets',
+				'bullet_bonus',
+				'draw_type',
+				'influence',
+				'control',
+				'outfit',
+			);
+
+foreach ($fields as $key => $field) {
+	echo '<div class="search-form-row">'.$this->formRow($form->get($field)).'</div>';
+}
+echo $this->formSubmit($form->get('submit'));
+
 echo $this->form()->closeTag();

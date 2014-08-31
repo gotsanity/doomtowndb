@@ -7,16 +7,8 @@ class QueryString extends AbstractHelper
 {
     public function __invoke()
     {
-    		$string = http_build_query($this->view->query);
+    		$string = http_build_query((array)$this->view->query) ? http_build_query($this->view->query) : '';
         return $string;
     }
-
-/*    public function fooMethod( $test ){
-        echo $test;
-    }
-
-    public function barMethod(){
-        echo 'hai';
-    } */
 
 }

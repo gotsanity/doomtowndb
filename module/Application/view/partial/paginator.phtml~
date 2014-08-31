@@ -6,7 +6,7 @@
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route, array('page' => $this->previous), TRUE); ?>">
+                    <a href="<?php echo $this->url($this->route, array('page' => $this->previous), TRUE); ?><?php echo '?suit=clubs'; ?>">
                         <<
                     </a>
                 </li>
@@ -35,7 +35,7 @@
             <!-- Next page link -->
             <?php if (isset($this->next)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route, array('page' => $this->next), TRUE); ?>">
+                    <a href="<?php echo $this->url($this->route, array('page' => $this->next), TRUE); ?><?php echo '?suit=clubs'; ?>">
                         >>
                     </a>
                 </li>
