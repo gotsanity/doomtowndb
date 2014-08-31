@@ -28,7 +28,18 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
     
-    
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                'query_string' => function($sm) {
+                    $helper = new View\Helper\QueryString ;
+                    return $helper;
+                }
+            )
+        );   
+   }
+   
     // start service config
     public function getServiceConfig()
     {

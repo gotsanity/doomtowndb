@@ -73,15 +73,53 @@ class CarddbController extends AbstractActionController
               $this->params()->fromRoute('order') : Select::ORDER_ASCENDING;
 			$select->order($order_by . ' ' . $order);
 			
-        $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
+      $page = $this->params()->fromRoute('page') ? (int) $this->params()->fromRoute('page') : 1;
         
-        $field = $this->params()->fromQuery('field') ? $this->params()->fromQuery('field') : array('set_name');
-        $value = $this->params()->fromQuery('value') ? $this->params()->fromQuery('value') : array('Core Set');
+			$fields = array(
+				'set_name',
+				'card_number',
+				'name',
+				'rank',
+				'suit',
+				'type',
+				'cost',
+				'upkeep',
+				'production',
+				'bullets',
+				'bullet_bonus',
+				'draw_type',
+				'influence',
+				'control',
+				'outfit',
+				'keywords',
+				'text',
+				'flavor_text',
+				'card_image',
+			);
 
-			//die(var_dump($field).','.var_dump($value));
+			foreach ($fields as $k => $v)
+			{
 			
-			foreach($field as $k => $v) {
-				$query[$v] = $value[$k];
+				if (!is_null($this->params()->fromQuery($v)))
+				{
+					if (strpos($this->params()->fromQuery($v), '>') === 0)
+					{
+						$query[] = $v.$this->params()->fromQuery($v);
+					}
+					elseif (strpos($this->params()->fromQuery($v), '<') === 0)
+					{
+						$query[] = $v.$this->params()->fromQuery($v);
+					}
+					else 
+					{
+						$query[$v] = $this->params()->fromQuery($v);
+					}
+				}
+			}
+			
+			if (count($query) === 0)
+			{
+				$this->redirect()->toRoute('carddb', array('action' => 'missing'));
 			}
 
 		  // grab the paginator from the CarddbTable
@@ -89,16 +127,34 @@ class CarddbController extends AbstractActionController
 		  // set the current page to what has been passed in query string, or to 1 if none set
 		  $paginator->setCurrentPageNumber($page);
 		  // set the number of items per page to 10
-		  $paginator->setItemCountPerPage(15);
+		  $paginator->setItemCountPerPage(25);
 
+			// if returning a single row redirect to single card view
+		  $numrows = $this->getCarddbTable()->search($query, true, $order_by, $order)->count();
+		  if ($numrows === 1)
+		  {
+				foreach ($paginator as $row)
+				{
+					$id = $row->id;	
+				}
+
+			  $this->redirect()->toRoute('carddb', array('action' => 'single', 'id' => $id));
+		  }
+		  elseif ($numrows === 0)
+		  {
+		  	die('records not found fixme');
+		  }
+
+			// display list
 		  return new ViewModel(array(
 		      'paginator' => $paginator,
 		      'order_by' => $order_by,
 		      'order' => $order,
+		      'query' => $query,
 		      'page' => $page,
 		  ));
     }
-
+    
     public function addAction()
     {
         $form = new CarddbForm();

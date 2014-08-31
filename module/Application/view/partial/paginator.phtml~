@@ -1,5 +1,5 @@
 <?php
-die(); ?>
+//die(); ?>
 <?php if ($this->pageCount): ?>
     <div class="pagination-centered">
         <ul class="pagination">
@@ -21,7 +21,7 @@ die(); ?>
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
                     <li>
-                        <a href="<?php echo $this->url($this->route, array('page' => $page), TRUE); ?>">
+                        <a href="<?php echo $this->url($this->route, array('page' => $page), TRUE); ?><?php echo '?suit=clubs'; ?>">
                             <?php echo $page; ?>
                         </a>
                     </li>
