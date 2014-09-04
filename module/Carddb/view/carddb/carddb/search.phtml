@@ -1,0 +1,38 @@
+<?php
+// module/Carddb/view/carddb/carddb/search.phtml:
+
+$title = 'Card Search';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('carddb', array('action' => 'results')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+			$fields = array(
+				'set_name',
+				'card_number',
+				'name',
+				'rank',
+				'suit',
+				'type',
+				'cost',
+				'upkeep',
+				'production',
+				'bullets',
+				'bullet_bonus',
+				'draw_type',
+				'influence',
+				'control',
+				'outfit',
+			);
+
+foreach ($fields as $key => $field) {
+	echo '<div class="search-form-row">'.$this->formRow($form->get($field)).'</div>';
+}
+echo $this->formSubmit($form->get('submit'));
+
+echo $this->form()->closeTag();

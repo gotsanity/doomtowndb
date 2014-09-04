@@ -1,12 +1,13 @@
 <?php
-//die(); ?>
+$link = $this->query_string();
+?>
 <?php if ($this->pageCount): ?>
     <div class="pagination-centered">
         <ul class="pagination">
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route, array('page' => $this->previous), TRUE); ?>">
+                    <a href="<?php echo $this->url($this->route, array('page' => $this->previous), TRUE); ?>?<?php echo $link; ?>">
                         <<
                     </a>
                 </li>
@@ -21,7 +22,7 @@
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
                     <li>
-                        <a href="<?php echo $this->url($this->route, array('page' => $page), TRUE); ?>">
+                        <a href="<?php echo $this->url($this->route, array('page' => $page), TRUE); ?>?<?php echo $link; ?>">
                             <?php echo $page; ?>
                         </a>
                     </li>
@@ -35,7 +36,7 @@
             <!-- Next page link -->
             <?php if (isset($this->next)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route, array('page' => $this->next), TRUE); ?>">
+                    <a href="<?php echo $this->url($this->route, array('page' => $this->next), TRUE); ?>?<?php echo $link; ?>">
                         >>
                     </a>
                 </li>

@@ -1,12 +1,12 @@
 <?php
-die(); ?>
+//die(); ?>
 <?php if ($this->pageCount): ?>
     <div class="pagination-centered">
         <ul class="pagination">
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route, array('page' => $this->previous), TRUE); ?>">
+                    <a href="<?php echo $this->url($this->route, array('page' => $this->previous), TRUE); ?><?php echo '?suit=clubs'; ?>">
                         <<
                     </a>
                 </li>
@@ -21,7 +21,7 @@ die(); ?>
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
                     <li>
-                        <a href="<?php echo $this->url($this->route, array('page' => $page), TRUE); ?>">
+                        <a href="<?php echo $this->url($this->route, array('page' => $page), TRUE); ?><?php echo '?suit=clubs'; ?>">
                             <?php echo $page; ?>
                         </a>
                     </li>
@@ -35,7 +35,7 @@ die(); ?>
             <!-- Next page link -->
             <?php if (isset($this->next)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route, array('page' => $this->next), TRUE); ?>">
+                    <a href="<?php echo $this->url($this->route, array('page' => $this->next), TRUE); ?><?php echo '?suit=clubs'; ?>">
                         >>
                     </a>
                 </li>

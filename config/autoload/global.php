@@ -24,6 +24,11 @@ return array(
                          'action' => 'add',
                      ),
                      array(
+                         'label' => 'Search',
+                         'route' => 'carddb',
+                         'action' => 'search',
+                     ),
+                     array(
 						              'label' => 'Edit',
 						              'route' => 'carddb',
 						              'action' => 'edit',
@@ -44,6 +49,11 @@ return array(
 						              'action' => 'results',
 						          ),
                  ),
+             ),
+             array(
+                 'label' => 'Search',
+                 'route' => 'carddb',
+                 'action' => 'search',
              ),
          ),
      ),

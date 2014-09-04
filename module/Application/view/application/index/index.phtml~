@@ -1,6 +1,6 @@
 <div class="jumbotron">
     <h1><?php echo sprintf($this->translate('Welcome to %sDT:R Database%s'), '<span class="zf-green">', '</span>') ?></h1>
-    <p><?php echo sprintf($this->translate('Welcome to the Doomtown: Reloaded Database. This site is meant to be a one-stop resource for all of your deckbuilding needs.'), '<a href="<?php echo $this->basePath(); ?>carddb/" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
+    <p><?php echo sprintf($this->translate('Welcome to the Doomtown: Reloaded Database. This site is meant to be a one-stop resource for all of your deckbuilding needs.'), '<a href="<?php echo $this->basePath(); ?>/carddb/" target="_blank">', '</a>', \Zend\Version\Version::VERSION) ?></p>
     <p><a class="btn btn-success btn-lg" href="<?php echo $this->basePath(); ?>/carddb"><?php echo $this->translate('Search the Database') ?> &raquo;</a></p>
 </div>
 
