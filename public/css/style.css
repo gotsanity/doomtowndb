@@ -113,3 +113,12 @@ th a {
 #green-text {
 	color: #70D900;
 }
+
+.search-form-row input, .search-form-row select {
+	width: 200px;
+	height: 30px;
+}
+
+.search-form-row span {
+	display: block;
+}

@@ -30,9 +30,11 @@ echo $this->form()->openTag($form);
 				'outfit',
 			);
 
+echo '<div class="row-fluid search-form-row">';
 foreach ($fields as $key => $field) {
-	echo '<div class="search-form-row">'.$this->formRow($form->get($field)).'</div>';
+	echo '<div class="'.$field.'-field">'.$this->formRow($form->get($field)).'</div>';
 }
 echo $this->formSubmit($form->get('submit'));
+echo '</div>';
 
 echo $this->form()->closeTag();
