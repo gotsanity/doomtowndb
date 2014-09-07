@@ -106,7 +106,6 @@ class CarddbController extends AbstractActionController
 	      }
 			}
 
-//die(var_dump($searchFields));
 			foreach ($searchFields as $k => $v)
 			{
 				if (!is_null($this->params()->fromQuery($v)))
@@ -140,7 +139,8 @@ class CarddbController extends AbstractActionController
 
 			// if returning a single row redirect to single card view
 		  $numrows = $this->getCarddbTable()->search($query, true, $order_by, $order)->count();
-		  if ($numrows === 1)
+
+		  if ($numrows === 0)
 		  {
 				foreach ($paginator as $row)
 				{

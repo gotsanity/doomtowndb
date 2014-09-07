@@ -4,8 +4,11 @@ return array(
         'driver'         => 'Pdo',
         'dsn'            => 'mysql:dbname=dtrdb;host=localhost',
         'driver_options' => array(
-            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'',
         ),
+        'options' => array(
+	        	'buffer_results' => true,
+      	),
     ),
     
      'navigation' => array(

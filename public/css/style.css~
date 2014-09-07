@@ -115,8 +115,8 @@ th a {
 }
 
 .search-form-row input, .search-form-row select {
-	width: 200px;
-	height: 40px;
+	width: 250px;
+	height: 30px;
 }
 
 .search-form-row span {

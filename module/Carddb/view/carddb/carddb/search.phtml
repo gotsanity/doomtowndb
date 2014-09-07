@@ -43,7 +43,8 @@ foreach ($fields as $key => $field) {
 }
 echo '</div>';
 echo '</div>';
-echo $this->formSubmit($form->get('submit'));
+echo '<div class="row-fluid">';
+echo '<div class="col-md-3 col-md-offset-9">'.$this->formSubmit($form->get('submit')).'</div>';
 
 
 echo $this->form()->closeTag();
