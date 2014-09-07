@@ -13,28 +13,37 @@ $form->prepare();
 echo $this->form()->openTag($form);
 
 			$fields = array(
-				'set_name',
-				'card_number',
 				'name',
+				'type',
 				'rank',
 				'suit',
-				'type',
+				'outfit',
+				'control',
+				'production',
 				'cost',
 				'upkeep',
-				'production',
+				'card_number',
 				'bullets',
 				'bullet_bonus',
 				'draw_type',
 				'influence',
-				'control',
-				'outfit',
+				'set_name',
 			);
 
 echo '<div class="row-fluid search-form-row">';
+echo '<div class="col-md-3 alert alert-warning">Just a heads up. At the moment the searching functionality is limited to exact terms. If you have any issues try searching again with different terms.</div>';
 foreach ($fields as $key => $field) {
-	echo '<div class="'.$field.'-field">'.$this->formRow($form->get($field)).'</div>';
+	if ($key % 5 == 0) {
+		if ($key != 0) {
+			echo '</div>';
+		}
+		echo '<div class="col-md-3">';
+	}
+	echo '<div class="span4 '.$field.'-field">'.$this->formRow($form->get($field)).'</div>';
 }
-echo $this->formSubmit($form->get('submit'));
 echo '</div>';
+echo '</div>';
+echo $this->formSubmit($form->get('submit'));
+
 
 echo $this->form()->closeTag();
