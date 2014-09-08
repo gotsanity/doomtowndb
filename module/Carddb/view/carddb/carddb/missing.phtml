@@ -1,7 +1,7 @@
 <?php
-// module/Carddb/view/carddb/carddb/search.phtml:
+// module/Carddb/view/carddb/carddb/missing.phtml:
 
-$title = 'Card Search';
+$title = 'Oops! Something went wrong.';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
@@ -29,7 +29,9 @@ echo $this->form()->openTag($form);
 				'influence',
 				'set_name',
 			);
-
+echo '<div class="row-fluid">';
+echo '<div class="col-md-12 alert alert-danger">No Records were found. Please search again.</div>';
+echo '</div>';
 echo '<div class="row-fluid search-form-row">';
 echo '<div class="col-md-3 alert alert-warning">Heads up! At the moment searching functionality is limited to exact terms. If you have any issues try searching again with different terms.</div>';
 foreach ($fields as $key => $field) {

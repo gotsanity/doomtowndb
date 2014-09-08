@@ -139,9 +139,8 @@ class CarddbController extends AbstractActionController
 
 			// if returning a single row redirect to single card view
 		  $numrows = $this->getCarddbTable()->search($query, true, $order_by, $order)->count();
-		  die(var_dump($numrows));
 
-		  if ($numrows === 0)
+		  if ($numrows === -1)
 		  {
 				foreach ($paginator as $row)
 				{
@@ -152,7 +151,7 @@ class CarddbController extends AbstractActionController
 		  }
 		  elseif ($numrows === 0)
 		  {
-		  	die('records not found fixme');
+		  	$this->redirect()->toRoute('carddb', array('action' => 'no_results'));
 		  }
 
 			// display list
@@ -196,6 +195,10 @@ class CarddbController extends AbstractActionController
         
         // return the form
         return array('form' => $form);
+    }
+    
+    public function missingAction()
+    {
     }
 
     public function editAction()
