@@ -199,6 +199,13 @@ class CarddbController extends AbstractActionController
     
     public function missingAction()
     {
+    		// initialize the form
+        $form = new CarddbSearch();
+        $form->get('submit')->setValue('Search');
+        
+        
+        // return the form
+        return array('form' => $form);
     }
 
     public function editAction()

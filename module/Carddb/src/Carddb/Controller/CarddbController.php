@@ -151,7 +151,7 @@ class CarddbController extends AbstractActionController
 		  }
 		  elseif ($numrows === 0)
 		  {
-		  	$this->redirect()->toRoute('carddb', array('action' => 'no_results'));
+		  	$this->redirect()->toRoute('carddb', array('action' => 'missing'));
 		  }
 
 			// display list
