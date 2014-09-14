@@ -110,6 +110,15 @@ th a {
 	color: #000;
 }
 
-a.green-text {
+#green-text {
 	color: #70D900;
+}
+
+.search-form-row input, .search-form-row select {
+	width: 250px;
+	height: 30px;
+}
+
+.search-form-row span {
+	display: block;
 }

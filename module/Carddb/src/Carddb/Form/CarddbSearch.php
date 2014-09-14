@@ -230,7 +230,7 @@ class CarddbSearch extends Form
         ));
         $this->add(array(
             'name' => 'text',
-            'type' => 'Textarea',
+            'type' => 'Text',
             'options' => array(
                 'label' => 'Card Text',
             ),

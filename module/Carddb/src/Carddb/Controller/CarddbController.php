@@ -106,7 +106,6 @@ class CarddbController extends AbstractActionController
 	      }
 			}
 
-//die(var_dump($searchFields));
 			foreach ($searchFields as $k => $v)
 			{
 				if (!is_null($this->params()->fromQuery($v)))
@@ -140,7 +139,8 @@ class CarddbController extends AbstractActionController
 
 			// if returning a single row redirect to single card view
 		  $numrows = $this->getCarddbTable()->search($query, true, $order_by, $order)->count();
-		  if ($numrows === 1)
+
+		  if ($numrows === -1)
 		  {
 				foreach ($paginator as $row)
 				{
@@ -151,7 +151,7 @@ class CarddbController extends AbstractActionController
 		  }
 		  elseif ($numrows === 0)
 		  {
-		  	die('records not found fixme');
+		  	$this->redirect()->toRoute('carddb', array('action' => 'no_results'));
 		  }
 
 			// display list
@@ -187,6 +187,17 @@ class CarddbController extends AbstractActionController
     }
 
     public function searchAction()
+    {
+    		// initialize the form
+        $form = new CarddbSearch();
+        $form->get('submit')->setValue('Search');
+        
+        
+        // return the form
+        return array('form' => $form);
+    }
+    
+    public function missingAction()
     {
     		// initialize the form
         $form = new CarddbSearch();
