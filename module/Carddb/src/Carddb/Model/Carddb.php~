@@ -6,7 +6,7 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
-class Carddb
+class Deckbuilder
 {
     public $id;
     public $set_name;
@@ -216,7 +216,6 @@ class Carddb
                 'filters'  => array(
                 		array('name' => 'StripTags'),
                 		array('name' => 'StringTrim'),
-                		array('name' => 'Null'),
                 ),
                 'validators' => array(
                     array(

@@ -1,0 +1,41 @@
+ <?php
+ // module/Deckbuilder/view/deckbuilder/deckbuilder/index.phtml:
+
+ $title = $this->escapeHtml($deckbuilders->name);
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <h4>By <?php echo $this->escapeHtml($deckbuilders->author_id); ?></h4>
+ <p>
+     <a href="<?php echo $this->url('deckbuilder', array('action'=>'index'));?>">Back to Your Decks</a>
+ </p>
+
+	<p>
+		<?php echo $this->escapeHtml($deckbuilders->description); ?>
+	</p>
+
+ <table class="table">
+ <tr>
+     <th>Card Slot</th>
+     <th>Card</th>
+     <th>Quantity</th>
+     <th>Rank of Suit</th>
+     <th>Cost</th>
+     <th>&nbsp;</th>
+ </tr>
+<?php $i = 0; ?>
+<?php foreach ($deckbuilders->slots as $slot) : ?>
+ <tr>
+ 		 <?php $i++; ?>
+ 		 <td><?php echo $i; ?></td>
+     <td><?php echo $this->escapeHtml($slot['name']);?></td>
+     <td><?php echo $this->escapeHtml($slot['quantity']);?></td>
+     <td><?php echo $this->escapeHtml($slot['rank']);?> of <?php echo $this->escapeHtml($slot['suit']);?></td>
+     <td><?php echo $this->escapeHtml($slot['cost']);?></td>
+     <td>
+         <a href="<?php echo $this->url('carddb',
+             array('action'=>'single', 'id' => $slot['card_id']));?>">View Card</a>
+     </td>
+ </tr>
+<?php endforeach; ?>
+ </table>

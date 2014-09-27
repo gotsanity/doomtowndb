@@ -1,0 +1,36 @@
+ <?php
+ // module/Deckbuilder/view/deckbuilder/deckbuilder/index.phtml:
+
+ $title = 'My Decks';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('deckbuilder', array('action'=>'add'));?>">Add new deck</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Deck Id</th>
+     <th>Name</th>
+	   <th>Author</th>
+     <th>Description</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($deckbuilders as $deckbuilder) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($deckbuilder->deck_id);?></td>
+     <td><?php echo $this->escapeHtml($deckbuilder->name);?></td>
+     <td><?php echo $this->escapeHtml($deckbuilder->author_id);?></td>
+     <td><?php echo $this->escapeHtml($deckbuilder->description);?></td>
+     <td>
+         <a href="<?php echo $this->url('deckbuilder',
+             array('action'=>'view', 'deck_id' => $deckbuilder->deck_id));?>">View</a>
+         <a href="<?php echo $this->url('deckbuilder',
+             array('action'=>'edit', 'deck_id' => $deckbuilder->deck_id));?>">Edit</a>
+         <a href="<?php echo $this->url('deckbuilder',
+             array('action'=>'delete', 'deck_id' => $deckbuilder->deck_id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

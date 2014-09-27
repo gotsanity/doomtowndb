@@ -11,7 +11,7 @@ return array(
             'carddb' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/carddb[/:action][/:id][/page/:page][/order_by/:order_by][/:order][set_name:set_name][card_number:card_number][name:name][rank:rank][suit:suit][type:type][cost:cost][upkeep:upkeep][production:production][bullets:bullets][draw_type:draw_type][influence:influence][outfit:outfit][keywords:keywords][text:text][flavor_text:flavor_text][card_image:card_image]',
+                    'route'    => '/carddb[/:action][/:id][/page/:page][/order_by/:order_by][/:order][/:query][set_name:set_name][card_number:card_number][name:name][rank:rank][suit:suit][type:type][cost:cost][upkeep:upkeep][production:production][bullets:bullets][draw_type:draw_type][influence:influence][outfit:outfit][keywords:keywords][text:text][flavor_text:flavor_text][card_image:card_image]',
                     'constraints' => array(
                         'action' => '(?!\bpage\b)(?!\border_by\b)[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',

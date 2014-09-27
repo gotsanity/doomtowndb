@@ -9,9 +9,9 @@ return array(
     'modules' => array(
         'Application',
         'Carddb',
-        'Authentication',
-	'ZfcBase',
-	'ZfcUser'
+        'ZfcBase',
+        'ZfcUser',
+        'Deckbuilder'
     ),
     'module_listener_options' => array(
         'module_paths' => array(

@@ -1,0 +1,10 @@
+ <?php
+ // module/Deckbuilder/view/deckbuilder/deckbuilder/add.phtml:
+
+ $title = 'Create a Deck';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('deckbuilder', array('action'=>'index'));?>">Back to Your Decks</a>
+ </p>
